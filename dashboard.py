@@ -36,15 +36,15 @@ st.subheader("Grafik Penyewaan Sepeda Berdasarkan Kondisi Cuaca")
 colors = ["#E6D9A2", "#CB80AB", "#A594F9", "#0D7C66"]
 fig, ax = plt.subplots(figsize=(10, 7))
 sns.barplot(
-    y="cnt",
-    x="weathersit",  # Menggunakan kolom weather_situation yang ada
+    x="weathersit",  # Pastikan kolom ini ada dalam dataframe
+    y="cnt",  # Menggunakan kolom 'cnt' dari dataframe yang benar
     data=hour.sort_values(by="weathersit", ascending=False),
     palette=colors,
     ax=ax
 )
 ax.set_title("Jumlah Penyewa Sepeda Berdasarkan Kondisi Cuaca", loc="center", fontsize=15)
-ax.set_ylabel(None)
-ax.set_xlabel(None)
+ax.set_ylabel('Jumlah Penyewa')
+ax.set_xlabel('Kondisi Cuaca')
 ax.tick_params(axis='x', labelsize=12, rotation=25)
 ax.tick_params(axis='y', labelsize=12)
 st.pyplot(fig)
@@ -62,13 +62,13 @@ st.pyplot(fig1)
 st.subheader("Distribusi pengguna Registered pada saat Workingday vs Weekend")
 
 # Memfilter data untuk weekend (contoh: hari Sabtu dan Minggu)
-weekend_data = day_df[day_df['workingday'] == 0]['registered'].dropna()
+weekend_data = day[day['workingday'] == 0]['registered'].dropna()
 # Memfilter data untuk working days (contoh: hari kerja)
-workingdays_data = day_df[day_df['workingday'] == 1]['registered'].dropna()
+workingdays_data = day[day['workingday'] == 1]['registered'].dropna()
 
 fig2, ax2 = plt.subplots(figsize=(14, 7))
-sns.histplot(weekend_data['registered'], bins=30, label='Weekend Days', color='blue', kde=True, alpha=0.5, ax=ax2)
-sns.histplot(workingdays_data['registered'], bins=30, label='Working Days', color='orange', kde=True, alpha=0.5, ax=ax2)
+sns.histplot(weekend_data, bins=30, label='Weekend Days', color='blue', kde=True, alpha=0.5, ax=ax2)
+sns.histplot(workingdays_data, bins=30, label='Working Days', color='orange', kde=True, alpha=0.5, ax=ax2)
 
 ax2.set_xlabel('Registered Rides')
 ax2.set_ylabel('Frekuensi')
