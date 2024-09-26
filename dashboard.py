@@ -12,8 +12,13 @@ hour = pd.read_csv("hour.csv")
 # Merge datasets
 bike_sharing = day.merge(hour, on='dteday', how='inner', suffixes=('_daily', '_hourly'))
 
-# Membuat judul dashboard
-st.title('Bike Rental Dashboard')
+# Membuat judul dashboard dengan emotikon
+st.markdown(
+    """
+    <h1 style='text-align: center;'>🚴‍♂️ Bike Rental Dashboard 🚴‍♀️</h1>
+    """,
+    unsafe_allow_html=True
+)
 
 # Membuat summary untuk metrics
 total_orders = day['cnt'].sum()
