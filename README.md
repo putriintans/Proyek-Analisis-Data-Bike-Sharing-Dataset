@@ -14,4 +14,4 @@ Bike Rental Dashboard merupakan aplikasi interaktif berbasis Streamlit yang digu
 #Cara Menjalankan Aplikasi : 
 - Membuat Virtual Environment
 - Install Dependencies
-- Menjalankan Aplikasi Streamlit
+- Menjalankan Aplikasi Streamlit (streamlit run dashboard.py)
