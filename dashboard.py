@@ -12,7 +12,6 @@ hour = pd.read_csv("hour.csv")
 # Merge datasets
 bike_sharing = day.merge(hour, on='dteday', how='inner', suffixes=('_daily', '_hourly'))
 
-# Membuat judul dashboard dengan emotikon
 st.markdown(
     """
     <h1 style='text-align: center;'>🚴‍♂️ Bike Rental Dashboard 🚴‍♀️</h1>
@@ -41,8 +40,8 @@ st.subheader("Grafik Penyewaan Sepeda Berdasarkan Kondisi Cuaca")
 colors = ["#E6D9A2", "#CB80AB", "#A594F9", "#0D7C66"]
 fig, ax = plt.subplots(figsize=(10, 7))
 sns.barplot(
-    x="weathersit",  # Pastikan kolom ini ada dalam dataframe
-    y="cnt",  # Menggunakan kolom 'cnt' dari dataframe yang benar
+    x="weathersit",  
+    y="cnt",  
     data=hour.sort_values(by="weathersit", ascending=False),
     palette=colors,
     ax=ax
