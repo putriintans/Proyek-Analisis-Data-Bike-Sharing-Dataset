@@ -9,6 +9,9 @@ st.set_page_config(layout="wide")
 day = pd.read_csv("day.csv")
 hour = pd.read_csv("hour.csv")
 
+# Ganti nilai weather_situation
+hour['weather_situation'].replace((1, 2, 3, 4), ('Sunny', 'Cloudy', 'Windy', 'Heavy_Rainsnow'), inplace=True)
+
 # Merge datasets
 bike_sharing = day.merge(hour, on='dteday', how='inner', suffixes=('_daily', '_hourly'))
 
@@ -41,9 +44,9 @@ st.subheader("Grafik Penyewaan Sepeda Berdasarkan Kondisi Cuaca")
 colors = ["#E6D9A2", "#CB80AB", "#A594F9", "#0D7C66"]
 fig, ax = plt.subplots(figsize=(10, 7))
 sns.barplot(
-    x="weathersit",  # Pastikan kolom ini ada dalam dataframe
+    x="weather_situation",  # Menggunakan kolom weather_situation yang telah diubah
     y="cnt",  # Menggunakan kolom 'cnt' dari dataframe yang benar
-    data=hour.sort_values(by="weathersit", ascending=False),
+    data=hour.sort_values(by="weather_situation", ascending=False),
     palette=colors,
     ax=ax
 )
